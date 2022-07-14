@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=4, maximum-scale=1" />
+</head><body>
+
+<div>
+<input type="file" id="files" multiple /><br /><br />
+<button id="send">Upload</button>
+<p id="uploading"></p>
+<progress value="0" max="100" id="progress"></progress>
+<button onclick="change()">Refresh</button>
+<br /><br /><br /><br />
+<img src="https://storage.googleapis.com/helping-panda.appspot.com/campaigns/1.jpeg" id="image">
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBCLcEoVKqDfDXxeMxOvPeXAb9A4PA53fw",
+    authDomain: "helping-panda.firebaseapp.com",
+    databaseURL: "https://helping-panda.firebaseio.com",
+    projectId: "helping-panda",
+    storageBucket: "helping-panda.appspot.com",
+    messagingSenderId: "546878085356",
+    appId: "1:546878085356:web:dad9843ec075ac0f41adc9",
+    measurementId: "G-DN8V0MNE82"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+//// CHOICE /////
+var files = [];
+var name;
+document.getElementById("files").addEventListener("change", function(e) {
+  files = e.target.files;
+  if(files.length!=0){
+  	name = files[0].name
+  }
+});
+
+///// SEND FILES //////
+document.getElementById("send").addEventListener("click", function() {
+
+  if (files.length != 0) {
+    for (let i = 0; i < files.length; i++) {
+      var storage = firebase.storage().ref('campaigns/'+files[i].name);
+      var upload = storage.put(files[i]);
+      upload.on("state_changed", function progress(snapshot) {
+          var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("progress").value = percentage;
+        },
+        function error() {alert("Error uploading file.");},
+        function complete() {document.getElementById( "uploading").innerHTML += `${files[i].name} uploaded <br />`;}); }
+    } else {alert("No file chosen."); }
+});
+function change() {
+document.getElementById("image").src = "https://storage.googleapis.com/helping-panda.appspot.com/campaigns/"+name
+}
+////////////////////////////////////
+
+// // GET URL ////////////////////
+// document.getElementById("get_url").addEventListener("click", function() {
+//   var get_url_file = document.getElementById("name").value;
+//   var storage = firebase.storage().ref(get_url_file);
+//   storage.getDownloadURL().then(function(url) {document.getElementById("response").innerHTML += `${url}  <br />`; })
+//                                          .catch(function(error) {alert("Error encountered."); });
+
+// });
+// ////////////////////////////////////
+
+
+// // LIST FILES ////////////////////
+// document.getElementById("list_files").addEventListener("click", function() {
+//   var storageRef = firebase.storage().ref();
+//   storageRef.listAll().then(function(result) {
+//   result.items.forEach(function(urlFile) {document.getElementById("response_list").innerHTML +=  `${urlFile}  <br />`; });
+//                               }).catch(function(error) {alert("No file chosen."); });											
+// });
+
+// ////////////////////////////////////
+// function down() {
+// // Create a reference to the file we want to download
+// var storageRef = firebase.storage().ref();
+// var starsRef = storageRef.child('404.png');
+
+// // Get the download URL
+// starsRef.getDownloadURL().then(function(url) {
+//   // Insert url into an <img> tag to "download"
+// }).catch(function(error) {
+
+//   // A full list of error codes is available at
+//   // https://firebase.google.com/docs/storage/web/handle-errors
+//   switch (error.code) {
+//   }
+// });
+// }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Helping Panda</title>
+    <link rel="icon" href="images/top.png">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>  
+</head>
+<style type="text/css">
+$font-family:   "Roboto";
+$font-size:     14px;
+
+$color-primary: #ABA194;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    height: 100vh
+}
+
+.user {
+    width: 90%;
+    max-width: 340px;
+    margin: 10vh auto;
+}
+
+.user__header {
+    text-align: center;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.7s forwards;
+}
+
+.user__title {
+    font-size: $font-size;
+    margin-bottom: -10px;
+    font-weight: 500;
+    color: white;
+}
+
+.form {
+    margin-top: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.9s forwards;
+}
+
+
+.form--no {
+    animation: NO 1s ease-in-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 0;
+    color: white;
+    background: $color-primary;
+    transition: 0.3s;
+    
+    &:hover {
+        background: darken($color-primary, 5%);
+    }
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
+</style>
+<body>
+<div class="user" style="margin-top:0; margin-bottom:0;">
+    <header class="user__header">
+        <img src="images/logo_outline.png" style="width:90px; margin: 0;" alt="" />
+        <h1 class="user__title">Helping Panda</h1>
+        <h2 class="user__title">Sign Up</h2>
+    </header>
+    
+    <div class="google-btn">
+      <div class="google-icon-wrapper">
+        <img class="google-icon" style="width: 40px" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">
+      </div>
+      <p class="btn-text"><b>Sign in with google</b></p>
+    </div>
+
+    <form class="form">
+        <div class="form__group">
+            <input type="text" placeholder="First Name" id="fname" class="form__input" />
+        </div>
+        
+        <div class="form__group">
+            <input type="text" placeholder="Last Name" id="lname" class="form__input" />
+        </div>
+
+        <div class="form__group">
+        <input type="number" placeholder="Phone Number" id="phone" class="form__input" />
+        </div>
+
+        <div class="form__group">
+              <select id="gender" value="Gender" class="form__input">
+                <option>Gender:</option>    
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+        </div>
+
+        <div class="form__group">
+              <select id="purpose" value="Gender" class="form__input">
+                <option>Purpose:</option>
+                <option value="Donor">Donor</option>
+                <option value="Campaigner">Campaigner</option>
+              </select>
+        </div>
+        
+        <div class="form__group">
+            <input type="email" placeholder="Email" id="auth" class="form__input" />
+        </div>
+        
+        <div class="form__group">
+            <input type="password" placeholder="Password" id="pass" class="form__input" />
+        </div> 
+
+        <div class="form__group">
+            <input type="password" placeholder="Retype Password" id="password" class="form__input" />
+        </div>
+        
+        <button class="btn" type="button" style="background-color: #120851;" onclick="signUp()">Register</button>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    const button = document.querySelector('.btn')
+const form   = document.querySelector('.form')
+
+button.addEventListener('click', function() {
+   form.classList.add('form--no') 
+});
+function car() {
+    // body...
+    c = document.getElementById("cars").value;
+    console.log(c);
+}
+  var config = {
+    apiKey: "AIzaSyBCLcEoVKqDfDXxeMxOvPeXAb9A4PA53fw",
+    authDomain: "helping-panda.firebaseapp.com",
+    databaseURL: "https://helping-panda.firebaseio.com",
+    projectId: "helping-panda",
+    storageBucket: "helping-panda.appspot.com",
+    messagingSenderId: "546878085356",
+    appId: "1:546878085356:web:dad9843ec075ac0f41adc9",
+    measurementId: "G-DN8V0MNE82"
+  };
+
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        function signUp(){
+
+            if(document.getElementById("pass").value == document.getElementById("password").value)
+            {
+            var email = document.getElementById("auth");
+            var password = document.getElementById("password");
+            console.log(email.value);   
+            const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+            promise.catch(e => alert(e.message));
+            
+            auth.onAuthStateChanged(function(user){
+            //var user = firebase.auth().currentUser;
+            if(user){
+            user.sendEmailVerification().then(function() {
+              // Email sent.
+              alert("You are Signed Up. A verification Email has been sent to your Mail.");
+              auth.signOut();
+            location.replace("https://helpingpanda.in/");
+            }).catch(function(error) {
+              // An error happened.
+            });
+        }
+    });
+        user_deets();    
+            }
+        }
+
+        function user_deets(){
+          // body...
+          email = document.getElementById("auth");
+          fname = document.getElementById("fname");
+          lname = document.getElementById("lname");
+          phone = document.getElementById("phone");
+          gender = document.getElementById("gender");
+          purpose = document.getElementById("purpose");
+          var deet = {
+            Email: email.value,
+            Phone: phone.value,
+            FirstName: fname.value,
+            LastName: lname.value,
+            Gender: gender.value,
+            Purpose: purpose.value
+          }
+          if(email.value!=""){
+          console.log(deet)
+          database.ref('users/'+fname.value+phone.value).set(deet);
+        }
+
+          
+
+        }
+
+</script>
+</html>

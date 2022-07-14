@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<button onclick = "googleSignin()">Google Signin</button>
+<button onclick = "googleSignout()">Google Signout</button>
+
+<button onclick = "facebookSignin()">Facebook Signin</button>
+<button onclick = "facebookSignout()">Facebook Signout</button>
+<!-- Firebase -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+<script src="https://helping-panda.firebaseapp.com/__/auth/handler"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBCLcEoVKqDfDXxeMxOvPeXAb9A4PA53fw",
+    authDomain: "helping-panda.firebaseapp.com",
+    databaseURL: "https://helping-panda.firebaseio.com",
+    projectId: "helping-panda",
+    storageBucket: "helping-panda.appspot.com",
+    messagingSenderId: "546878085356",
+    appId: "1:546878085356:web:dad9843ec075ac0f41adc9",
+    measurementId: "G-DN8V0MNE82"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="Signin_Google.js"></script>
+<script src="Signin_FB.js"></script>
+</body>
+</html>

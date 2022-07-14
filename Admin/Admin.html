@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Admin</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/top.png">
+</head>
+<style type="text/css">
+.textbox
+{
+    font-size:14pt;
+    width: 500px;
+}
+.textbox_
+{
+    height:100px;
+    width: 400px;
+    font-size:14pt;
+}
+</style>
+<body onload="login()">
+<h1>A very basic Admin page, don't throw shade</h1>
+<h3>Please input the campaign name, you wanna edit<br>Press "GET" to get all the campaign names</h3>
+<b><h4 style="color: grey"><u>Please copy paste the name from below</u></h4></b>
+<button onclick="campaign_name()">GET </button>
+<h3><u>All Campaigns: </u><span id="campaign_names_list"></span></h3>
+
+<input type="text" name="CampaignNameAdmin" id="CampaignNameAdmin" placeholder="Enter Campaign Name">
+<button onclick="camp_admin()">Submit</button>
+
+<div class="col-lg-8 col-md-8">
+<h3 class="mb-30">New Campaign</h3>
+<!-- 							<a style="color: red">* fields</a><br> -->
+<form action="#">
+<div class="mt-10">
+	<textarea type="text" name="camapign_admin_name" id="camapign_admin_name" placeholder="Campaign Name*"
+		class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="text" name="camapign_admin_aim" id="campaign_admin_aim" placeholder="Aim of campaign*"
+		class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="text" name="camapign_admin_category" id="camapign_admin_category" placeholder="Campaign Category"
+		class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea class="single-textarea textbox_" name="camapign_admin_summary" id="camapign_admin_summary" placeholder="Campaign Summary(brief)*"></textarea>
+</div>
+<div class="mt-10">
+	<textarea class="single-textarea textbox_" name="campaign_admin_motivation" id="campaign_admin_motivation" placeholder="Tell us your motivation"></textarea>
+</div>
+<div class="mt-10">
+	<textarea class="single-textarea textbox_" name="campaign_admin_about" id="campaign_admin_about" placeholder="Tell us a little about yourself"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="number" name="camapign_admin_income" id="camapign_admin_income" placeholder="Campaign Income*"
+		class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="number" name="camapign_admin_goal" id="camapign_admin_goal" placeholder="Campaign Goal*"
+		class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="camapign_admin_Razorurl" id="camapign_admin_Razorurl" placeholder="RazorPayURL of the Campaign" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="camapign_admin_Pageurl" id="camapign_admin_Pageurl" placeholder="PageURL of the Campaign" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="number" name="camapign_admin_DIV" id="camapign_admin_DIV" placeholder="DIV" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="camapign_ImageURL1" id="camapign_ImageURL1" placeholder="ImageURL1 of the Campaign" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="camapign_ImageURL2" id="camapign_ImageURL2" placeholder="ImageURL2 of the Campaign" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="camapign_ImageURL3" id="camapign_ImageURL3" placeholder="ImageURL3 of the Campaign" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="LI" id="LI" placeholder="LinkedIn URL" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="TW" id="TW" placeholder="Twitter URL" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="IG" id="IG" placeholder="Instagram URL" class="single-input textbox"></textarea>
+</div>
+<div class="mt-10">
+	<textarea type="URL" name="FB" id="FB" placeholder="Facebook URL" class="single-input textbox"></textarea>
+</div>
+</div><br>
+<button class="btn header-btn" onclick="Edit_Campaign(); return false">Make Changes</button>
+</form>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+<!--Firebase JS files-->
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+
+<script src="./AdminJs.js"></script>
+</html>
